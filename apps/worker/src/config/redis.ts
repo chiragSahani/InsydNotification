@@ -1,10 +1,10 @@
 import { Redis } from 'ioredis';
-import { config } from './env.js';
+import { getConfig } from './env.js';
 
 export async function connectRedis() {
   try {
+    const config = getConfig();
     const redis = new Redis(config.REDIS_URL, {
-      retryDelayOnFailover: 100,
       maxRetriesPerRequest: 3,
       lazyConnect: true
     });

@@ -1,5 +1,5 @@
 import type { Server } from 'socket.io';
-import type { SocketEvents } from '@insyd/types';
+import type { SocketEvents, Notification } from '@insyd/types';
 
 const userRooms = new Map<string, string>(); // socketId -> userId
 
@@ -40,7 +40,7 @@ export function setupSocketIO(io: Server) {
 }
 
 // Helper to emit notifications to users
-export function emitNotificationToUser(io: Server, userId: string, notification: any) {
+export function emitNotificationToUser(io: Server, userId: string, notification: Notification) {
   io.of('/notifications')
     .to(`user:${userId}`)
     .emit('notification:new', { notification });

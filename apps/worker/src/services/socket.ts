@@ -1,11 +1,12 @@
 import { io as ioClient, Socket } from 'socket.io-client';
-import { config } from '../config/env.js';
+import { getConfig } from '../config/env.js';
 import type { Notification } from '@insyd/types';
 
 let socket: Socket | null = null;
 
 async function getSocket(): Promise<Socket> {
   if (!socket || !socket.connected) {
+    const config = getConfig();
     socket = ioClient(`${config.SOCKET_PUBLIC_URL}/notifications`, {
       reconnection: true,
       reconnectionAttempts: 5,

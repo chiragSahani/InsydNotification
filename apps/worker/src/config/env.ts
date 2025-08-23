@@ -7,4 +7,6 @@ const envSchema = z.object({
   NODE_ENV: z.string().default('development')
 });
 
-export const config = envSchema.parse(process.env);
+export function getConfig() {
+  return envSchema.parse(process.env);
+}

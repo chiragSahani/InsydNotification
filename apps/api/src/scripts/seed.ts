@@ -1,8 +1,17 @@
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({ path: join(__dirname, '../../.env') });
+
 import mongoose from 'mongoose';
 import { UserModel } from '../models/User.js';
 import { FollowModel } from '../models/Follow.js';
 import { PostModel } from '../models/Post.js';
-import { config } from '../config/env.js';
+import { getConfig } from '../config/env.js';
 
 const DEMO_USERS = [
   { name: 'Alice Johnson' },
@@ -27,6 +36,7 @@ const DEMO_POSTS = [
 
 async function seedDatabase() {
   try {
+    const config = getConfig();
     await mongoose.connect(config.MONGO_URI);
     console.log('Connected to MongoDB for seeding');
     

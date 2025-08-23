@@ -1,12 +1,31 @@
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const envPath = join(__dirname, '../.env');
+console.log('Worker - Loading .env from:', envPath);
+const result = dotenv.config({ path: envPath });
+if (result.error) {
+  console.error('Worker - Error loading .env:', result.error);
+} else {
+  console.log('Worker - Successfully loaded .env file');
+  console.log('Worker - MONGO_URI present:', !!process.env.MONGO_URI);
+  console.log('Worker - REDIS_URL present:', !!process.env.REDIS_URL);
+}
+
 import { Worker } from 'bullmq';
 import { connectDatabase } from './config/database.js';
 import { connectRedis } from './config/redis.js';
 import { processEvent } from './processors/fanout.js';
-import { config } from './config/env.js';
+import { getConfig } from './config/env.js';
 import type { FanoutJobData } from '@insyd/types';
 
 async function startWorker() {
   try {
+    const config = getConfig();
     await connectDatabase();
     const redis = await connectRedis();
     
@@ -16,8 +35,8 @@ async function startWorker() {
       {
         connection: redis,
         concurrency: 5, // Process 5 jobs concurrently
-        removeOnComplete: 100,
-        removeOnFail: 50
+        removeOnComplete: { count: 100 },
+        removeOnFail: { count: 50 }
       }
     );
     

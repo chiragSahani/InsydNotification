@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
-import { config } from './env.js';
+import { getConfig } from './env.js';
 
 export async function connectDatabase() {
   try {
+    const config = getConfig();
     await mongoose.connect(config.MONGO_URI);
     console.log('✅ Connected to MongoDB');
     
@@ -17,6 +18,11 @@ export async function connectDatabase() {
 async function createIndexes() {
   try {
     const db = mongoose.connection.db;
+    
+    if (!db) {
+      console.warn('⚠️ Database connection not available for index creation');
+      return;
+    }
     
     // Follow collection indexes
     await db.collection('follows').createIndex(
@@ -50,7 +56,7 @@ async function createIndexes() {
     
     console.log('✅ Database indexes created successfully');
   } catch (error) {
-    console.warn('⚠️ Index creation warning:', error.message);
+    console.warn('⚠️ Index creation warning:', (error as Error).message);
   }
 }
 

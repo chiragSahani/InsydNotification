@@ -92,8 +92,36 @@ export function useNotifications(selectedUser: User | null) {
   }, []);
 
   const addNewNotification = useCallback((notification: Notification) => {
-    setNotifications(prev => [notification, ...prev]);
+    setNotifications(prev => {
+      // Check if notification already exists to prevent duplicates
+      if (prev.find(n => n._id === notification._id)) {
+        return prev;
+      }
+      return [notification, ...prev];
+    });
   }, []);
+
+  const refreshNotifications = useCallback(async () => {
+    if (!selectedUser) return;
+    
+    try {
+      const url = new URL(`${import.meta.env.VITE_API_URL}/api/notifications`);
+      url.searchParams.set('userId', selectedUser._id);
+      url.searchParams.set('limit', '20');
+
+      const response = await fetch(url.toString());
+      const result = await response.json();
+
+      if (result.success) {
+        const data: NotificationsResponse = result.data;
+        setNotifications(data.notifications);
+        setHasMore(data.hasMore);
+        setNextCursor(data.nextCursor);
+      }
+    } catch (error) {
+      console.error('Failed to refresh notifications:', error);
+    }
+  }, [selectedUser]);
 
   return {
     notifications,
@@ -101,6 +129,7 @@ export function useNotifications(selectedUser: User | null) {
     hasMore,
     loadMore,
     markAsRead,
-    addNewNotification
+    addNewNotification,
+    refreshNotifications
   };
 }
