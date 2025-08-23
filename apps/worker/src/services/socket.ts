@@ -51,10 +51,9 @@ export async function emitNotificationToUsers(
     // Emit to each user room
     for (const [userId, userNotifications] of notificationsByUser) {
       for (const notification of userNotifications) {
-        socket.emit('emit-to-user', {
+        socket.emit('notification:new', {
           userId,
-          event: 'notification:new',
-          data: { notification }
+          notification
         });
         
         // Update delivery status

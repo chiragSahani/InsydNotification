@@ -309,11 +309,13 @@ export function Dashboard({ selectedUser }: DashboardProps) {
               className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-200/50"
             >
               <div className="w-10 h-10 bg-gradient-to-br from-amber-100 to-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <User className="w-5 h-5 text-amber-600" />
+                <UserIcon className="w-5 h-5 text-amber-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-slate-800 font-medium line-clamp-2">{post.content}</p>
                 <div className="flex items-center gap-2 mt-2 text-xs text-slate-500">
+                  <UserIcon className="w-3 h-3" />
+                  <span>{post.authorId.name}</span>
                   <Clock className="w-3 h-3" />
                   <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>

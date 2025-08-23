@@ -1,0 +1,54 @@
+services:
+  # API Service
+  - type: web
+    name: insyd-notifications-api
+    env: node
+    plan: starter
+    buildCommand: pnpm install && pnpm --filter api build
+    startCommand: pnpm --filter api start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: MONGO_URI
+        fromDatabase:
+          name: insyd-mongodb
+          property: connectionString
+      - key: REDIS_URL
+        fromDatabase:
+          name: insyd-redis
+          property: connectionString
+      - key: CORS_ORIGIN
+        value: https://your-app-name.netlify.app
+      - key: SOCKET_PUBLIC_URL
+        sync: false
+
+  # Worker Service
+  - type: worker
+    name: insyd-notifications-worker
+    env: node
+    plan: starter
+    buildCommand: pnpm install && pnpm --filter worker build
+    startCommand: pnpm --filter worker start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        fromDatabase:
+          name: insyd-mongodb
+          property: connectionString
+      - key: REDIS_URL
+        fromDatabase:
+          name: insyd-redis
+          property: connectionString
+      - key: SOCKET_PUBLIC_URL
+        sync: false
+
+databases:
+  - name: insyd-mongodb
+    databaseName: insyd-notifications
+    plan: starter
+  
+  - name: insyd-redis
+    plan: starter

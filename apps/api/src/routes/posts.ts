@@ -72,6 +72,7 @@ postsRouter.get('/', async (req, res) => {
       .find({})
       .sort({ createdAt: -1 })
       .limit(limit)
+      .populate('authorId')
       .lean();
     
     res.json({ 
