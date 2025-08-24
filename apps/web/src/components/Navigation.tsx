@@ -26,9 +26,9 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-2"
+      className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-1 sm:p-2"
     >
-      <nav className="flex gap-2">
+      <nav className="flex flex-wrap gap-1 sm:gap-2">
         {tabs.map((tab, index) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -42,7 +42,7 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
               transition={{ delay: index * 0.1, duration: 0.4 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`relative px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`relative px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ${
                 isActive 
                   ? 'text-white shadow-lg' 
                   : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
@@ -64,9 +64,9 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
                   } : {}}
                   transition={{ duration: 0.6 }}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.div>
-                <span className="text-sm">{tab.label}</span>
+                <span className="text-xs sm:text-sm hidden xs:inline">{tab.label}</span>
                 
                 {tab.id === 'notifications' && (
                   <motion.div

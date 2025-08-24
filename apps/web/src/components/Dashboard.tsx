@@ -244,7 +244,7 @@ export function Dashboard({ selectedUser }: DashboardProps) {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {statCards.map((card, index) => {
           const Icon = card.icon;
           return (
@@ -258,23 +258,23 @@ export function Dashboard({ selectedUser }: DashboardProps) {
                 translateY: -2,
                 boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)"
               }}
-              className={`bg-gradient-to-br ${card.bgColor} rounded-2xl p-6 border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300`}
+              className={`bg-gradient-to-br ${card.bgColor} rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300`}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-slate-600 text-sm font-medium mb-1">
+                  <p className="text-slate-600 text-xs sm:text-sm font-medium mb-1">
                     {card.title}
                   </p>
-                  <p className={`text-3xl font-bold ${card.textColor}`}>
+                  <p className={`text-2xl sm:text-3xl font-bold ${card.textColor}`}>
                     {card.value}
                   </p>
                 </div>
                 <motion.div
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className={`p-3 bg-gradient-to-tr ${card.color} rounded-xl shadow-lg`}
+                  className={`p-2 sm:p-3 bg-gradient-to-tr ${card.color} rounded-xl shadow-lg`}
                 >
-                  <Icon className="w-6 h-6 text-white" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </motion.div>
               </div>
             </motion.div>
@@ -309,7 +309,7 @@ export function Dashboard({ selectedUser }: DashboardProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-200/50"
+              className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-slate-50/50 border border-slate-200/50"
             >
               <div className={`p-2 rounded-full ${
                 activity.status === 'success' 
@@ -319,8 +319,8 @@ export function Dashboard({ selectedUser }: DashboardProps) {
                 <CheckCircle2 className="w-4 h-4" />
               </div>
               <div className="flex-1">
-                <p className="text-slate-800 font-medium">{activity.action}</p>
-                <p className="text-slate-500 text-sm">{activity.time}</p>
+                <p className="text-slate-800 font-medium text-sm sm:text-base">{activity.action}</p>
+                <p className="text-slate-500 text-xs sm:text-sm">{activity.time}</p>
               </div>
             </motion.div>
           ))}
@@ -341,7 +341,7 @@ export function Dashboard({ selectedUser }: DashboardProps) {
           <h3 className="text-xl font-bold text-slate-900">Quick Actions</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {[
             { title: 'Send Test Notification', description: 'Send a sample notification', color: 'from-blue-500 to-blue-600' },
             { title: 'Mark All as Read', description: 'Clear all unread notifications', color: 'from-green-500 to-green-600' },
@@ -357,10 +357,10 @@ export function Dashboard({ selectedUser }: DashboardProps) {
                 boxShadow: "0 10px 25px rgba(99, 102, 241, 0.3)" 
               }}
               whileTap={{ scale: 0.98 }}
-              className={`p-4 rounded-xl bg-gradient-to-tr ${action.color} text-white shadow-lg hover:shadow-xl transition-all duration-300 text-left`}
+              className={`p-3 sm:p-4 rounded-xl bg-gradient-to-tr ${action.color} text-white shadow-lg hover:shadow-xl transition-all duration-300 text-left`}
             >
-              <h4 className="font-semibold mb-1">{action.title}</h4>
-              <p className="text-sm opacity-90">{action.description}</p>
+              <h4 className="font-semibold mb-1 text-sm sm:text-base">{action.title}</h4>
+              <p className="text-xs sm:text-sm opacity-90">{action.description}</p>
             </motion.button>
           ))}
         </div>

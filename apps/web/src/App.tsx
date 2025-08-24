@@ -58,7 +58,7 @@ function App() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-lg border-b border-slate-200/50 dark:border-slate-700/50 sticky top-0 z-50 transition-colors duration-300"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-6">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 lg:py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
@@ -88,7 +88,7 @@ function App() {
         </div>
       </motion.header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
         <AnimatePresence mode="wait">
           {!selectedUser ? (
             <motion.div 
@@ -135,7 +135,7 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.5 }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
               {/* Navigation */}
               <motion.div
@@ -167,7 +167,7 @@ function App() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
                   >
                     <motion.div
                       initial={{ x: -100, opacity: 0 }}

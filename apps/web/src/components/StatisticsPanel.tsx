@@ -155,19 +155,19 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
     >
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-3">
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="p-3 bg-gradient-to-tr from-purple-500 to-pink-600 rounded-xl"
+              className="p-2 sm:p-3 bg-gradient-to-tr from-purple-500 to-pink-600 rounded-xl flex-shrink-0"
             >
-              <BarChart3 className="w-6 h-6 text-white" />
+              <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </motion.div>
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900">Analytics</h2>
-              <div className="flex items-center gap-3">
-                <p className="text-slate-600">Notification performance insights</p>
+            <div className="min-w-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Analytics</h2>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <p className="text-slate-600 text-sm sm:text-base">Notification performance insights</p>
                 <div className="flex items-center gap-1">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
@@ -180,13 +180,13 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
             </div>
           </div>
           
-          <div className="flex flex-col items-end gap-2">
-            <div className="flex gap-2">
+          <div className="flex flex-col sm:items-end gap-2">
+            <div className="flex flex-wrap gap-2">
               {['7d', '30d', '90d'].map((range) => (
                 <button
                   key={range}
                   onClick={() => setTimeRange(range as any)}
-                  className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                     timeRange === range
                       ? 'bg-purple-500 text-white'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -204,7 +204,7 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {[
           {
             title: 'Total Notifications',
@@ -243,16 +243,16 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.02, translateY: -2 }}
-              className={`bg-gradient-to-br ${metric.bgColor} rounded-2xl p-6 border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300`}
+              className={`bg-gradient-to-br ${metric.bgColor} rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300`}
             >
               <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 bg-gradient-to-tr ${metric.color} rounded-xl shadow-lg`}>
-                  <Icon className="w-5 h-5 text-white" />
+                <div className={`p-2 sm:p-3 bg-gradient-to-tr ${metric.color} rounded-xl shadow-lg`}>
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
                 <TrendingUp className="w-4 h-4 text-green-500" />
               </div>
-              <p className="text-slate-600 text-sm font-medium mb-1">{metric.title}</p>
-              <p className="text-2xl font-bold text-slate-800">{metric.value}</p>
+              <p className="text-slate-600 text-xs sm:text-sm font-medium mb-1">{metric.title}</p>
+              <p className="text-xl sm:text-2xl font-bold text-slate-800">{metric.value}</p>
             </motion.div>
           );
         })}
@@ -272,9 +272,9 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
           <h3 className="text-xl font-bold text-slate-900">Weekly Activity</h3>
         </div>
 
-        <div className="flex items-end gap-3 h-64">
+        <div className="flex items-end gap-2 sm:gap-3 h-48 sm:h-64 overflow-x-auto">
           {stats.weeklyStats.map((stat, index) => (
-            <div key={stat.day} className="flex-1 flex flex-col items-center">
+            <div key={stat.day} className="flex-1 min-w-[40px] flex flex-col items-center">
               <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: `${(stat.count / maxCount) * 200}px` }}
@@ -285,12 +285,12 @@ export function StatisticsPanel({ selectedUser }: StatisticsPanelProps) {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
-                  className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded"
+                  className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-1 sm:px-2 py-1 rounded whitespace-nowrap"
                 >
                   {stat.count}
                 </motion.div>
               </motion.div>
-              <p className="text-slate-600 text-sm mt-2 font-medium">{stat.day}</p>
+              <p className="text-slate-600 text-xs sm:text-sm mt-2 font-medium">{stat.day}</p>
             </div>
           ))}
         </div>

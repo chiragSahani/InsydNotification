@@ -29,9 +29,9 @@ export function NotificationsPanel({
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-6"
+      className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-4 sm:p-6"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 xs:gap-0 mb-4 sm:mb-6">
         <div className="flex items-center gap-3">
           <motion.div
             animate={{ 
@@ -47,7 +47,7 @@ export function NotificationsPanel({
           >
             <Bell className="w-5 h-5 text-white" />
           </motion.div>
-          <h2 className="text-2xl font-bold text-slate-900">Notifications</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Notifications</h2>
           {notifications.filter(n => !n.isRead).length > 0 && (
             <motion.span
               initial={{ scale: 0 }}
