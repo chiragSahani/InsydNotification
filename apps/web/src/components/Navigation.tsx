@@ -4,7 +4,6 @@ import {
   BarChart3, 
   Settings, 
   Zap,
-  Code,
   Users
 } from 'lucide-react';
 

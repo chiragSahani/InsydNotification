@@ -10,7 +10,7 @@ const createPostSchema = z.object({
   content: z.string().min(1).max(1000)
 });
 
-export const postsRouter = Router();
+export const postsRouter: Router = Router();
 
 // Create post
 postsRouter.post('/', async (req, res) => {

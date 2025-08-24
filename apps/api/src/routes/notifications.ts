@@ -13,7 +13,7 @@ const markReadSchema = z.object({
   id: z.string()
 });
 
-export const notificationsRouter = Router();
+export const notificationsRouter: Router = Router();
 
 // Get notifications for user
 notificationsRouter.get('/', async (req, res) => {

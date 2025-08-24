@@ -12,7 +12,7 @@ const createFollowSchema = z.object({
   message: "Cannot follow yourself"
 });
 
-export const followsRouter = Router();
+export const followsRouter: Router = Router();
 
 // Create follow relationship
 followsRouter.post('/', async (req, res) => {

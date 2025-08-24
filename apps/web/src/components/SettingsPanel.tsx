@@ -3,8 +3,6 @@ import { motion } from 'framer-motion';
 import { 
   Settings, 
   Bell, 
-  Volume2, 
-  VolumeX,
   Smartphone,
   Mail,
   MessageSquare,
@@ -14,8 +12,7 @@ import {
   Sun,
   RotateCcw,
   Shield,
-  Clock,
-  Zap
+  Clock
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSocket } from '../hooks/useSocket';

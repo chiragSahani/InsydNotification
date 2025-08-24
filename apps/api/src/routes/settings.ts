@@ -4,7 +4,7 @@ import { Settings } from '../models/Settings.js';
 import { ResponseHelper } from '../utils/response.js';
 import { logger } from '../utils/logger.js';
 
-export const settingsRouter = Router();
+export const settingsRouter: Router = Router();
 
 // Get user settings
 settingsRouter.get('/:userId', [

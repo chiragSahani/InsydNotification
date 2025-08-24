@@ -4,7 +4,7 @@ import { UserModel } from '../models/User.js';
 import { ResponseHelper } from '../utils/response.js';
 import { logger } from '../utils/logger.js';
 
-export const usersRouter = Router();
+export const usersRouter: Router = Router();
 
 // Validation middleware
 const validatePagination = [

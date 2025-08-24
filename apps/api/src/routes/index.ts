@@ -6,7 +6,7 @@ import { postsRouter } from './posts.js';
 import { followsRouter } from './follows.js';
 import { settingsRouter } from './settings.js';
 
-export const apiRoutes = Router();
+export const apiRoutes: Router = Router();
 
 apiRoutes.use('/events', eventsRouter);
 apiRoutes.use('/notifications', notificationsRouter);

@@ -18,7 +18,7 @@ function App() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const socket = useSocket(selectedUser);
-  const { users } = useUsers();
+  const { users: _ } = useUsers();
   const {
     notifications,
     isLoading,

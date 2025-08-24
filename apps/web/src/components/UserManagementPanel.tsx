@@ -3,10 +3,8 @@ import { motion } from 'framer-motion';
 import { 
   Users, 
   UserPlus, 
-  UserMinus,
   Search,
   Loader,
-  TrendingUp,
   UserCheck,
   Activity,
   Calendar

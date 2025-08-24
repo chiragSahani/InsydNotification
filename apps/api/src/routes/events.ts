@@ -11,7 +11,7 @@ const eventSchema = z.object({
   metadata: z.record(z.any()).optional()
 });
 
-export const eventsRouter = Router();
+export const eventsRouter: Router = Router();
 
 // Event ingestion endpoint
 eventsRouter.post('/', async (req, res) => {
