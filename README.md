@@ -62,6 +62,10 @@ graph TB
     WORKER <--> MONGO
     QUEUE <--> REDIS
 ```
+## 📚 Documentation
+
+- **[API Documentation](./API_DOCS.md)** - Complete API reference
+- **[System Design](./docs/system-design.md)** - Architecture details
 
 ### Core Components
 
@@ -209,11 +213,6 @@ pnpm dev
 3. **Watch Notifications** - See real-time updates appear instantly
 4. **Multi-User Testing** - Open multiple tabs with different users
 
-## 📚 Documentation
-
-- **[API Documentation](./API_DOCS.md)** - Complete API reference
-- **[System Design](./docs/system-design.md)** - Architecture details
-- **[Deployment Guide](./DEPLOYMENT.md)** - Production deployment instructions
 
 ## 🛠️ Development
 
