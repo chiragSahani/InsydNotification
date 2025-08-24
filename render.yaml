@@ -4,7 +4,7 @@ services:
     name: insyd-notifications-api
     env: node
     plan: starter
-    buildCommand: pnpm install --frozen-lockfile && pnpm --filter types build && pnpm --filter api build
+    buildCommand: pnpm install --frozen-lockfile && tsc --build packages/types apps/api
     startCommand: pnpm --filter api start
     envVars:
       - key: NODE_ENV
@@ -33,7 +33,7 @@ services:
     name: insyd-notifications-worker
     env: node
     plan: starter
-    buildCommand: pnpm install --frozen-lockfile && pnpm --filter types build && pnpm --filter worker build
+    buildCommand: pnpm install --frozen-lockfile && tsc --build packages/types apps/worker
     startCommand: pnpm --filter worker start
     envVars:
       - key: NODE_ENV
