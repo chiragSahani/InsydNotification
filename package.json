@@ -10,11 +10,18 @@
   "scripts": {
     "dev": "concurrently \"pnpm --filter api dev\" \"pnpm --filter worker dev\" \"pnpm --filter web dev\"",
     "build": "pnpm --filter types build && pnpm --filter api build && pnpm --filter worker build && pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "build:worker": "pnpm --filter worker build", 
+    "build:web": "pnpm --filter web build",
     "start": "concurrently \"pnpm --filter api start\" \"pnpm --filter worker start\"",
+    "start:api": "pnpm --filter api start",
+    "start:worker": "pnpm --filter worker start",
     "seed": "pnpm --filter api seed",
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
-    "clean": "pnpm -r clean && rm -rf node_modules"
+    "typecheck": "pnpm -r --parallel run typecheck",
+    "clean": "pnpm -r clean && rm -rf node_modules",
+    "deploy:prepare": "pnpm install && pnpm build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

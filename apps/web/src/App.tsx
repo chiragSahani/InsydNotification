@@ -8,6 +8,7 @@ import { SettingsPanel } from './components/SettingsPanel';
 import { StatisticsPanel } from './components/StatisticsPanel';
 import { UserManagementPanel } from './components/UserManagementPanel';
 import { Navigation } from './components/Navigation';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { useSocket } from './hooks/useSocket';
 import { useNotifications } from './hooks/useNotifications';
 import { useUsers } from './hooks/useUsers';
@@ -49,12 +50,13 @@ function App() {
   }, [socket, selectedUser, addNewNotification, refreshNotifications]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50">
+    <ThemeProvider>
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-slate-200/50 sticky top-0 z-50"
+        className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-lg border-b border-slate-200/50 dark:border-slate-700/50 sticky top-0 z-50 transition-colors duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -64,10 +66,10 @@ function App() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                 Insyd Notifications
               </h1>
-              <p className="text-slate-600 text-sm lg:text-base mt-1">
+              <p className="text-slate-600 dark:text-slate-300 text-sm lg:text-base mt-1">
                 Real-time notification system with beautiful animations
               </p>
             </motion.div>
@@ -101,7 +103,7 @@ function App() {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-12 max-w-lg mx-auto"
+                className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 dark:border-slate-700/50 p-12 max-w-lg mx-auto"
               >
                 <motion.div 
                   animate={{ 
@@ -118,10 +120,10 @@ function App() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </motion.div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">
                   Select a Demo User
                 </h2>
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                   Choose a user from the dropdown above to start receiving notifications and experience the magic of real-time updates.
                 </p>
               </motion.div>
@@ -233,6 +235,7 @@ function App() {
         </AnimatePresence>
       </main>
     </div>
+    </ThemeProvider>
   );
 }
 

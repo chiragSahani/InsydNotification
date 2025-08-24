@@ -11,6 +11,7 @@ import {
   Activity,
   Calendar
 } from 'lucide-react';
+import { useSocket } from '../hooks/useSocket';
 import type { User } from '@insyd/types';
 
 interface UserManagementPanelProps {
@@ -33,6 +34,8 @@ export function UserManagementPanel({ selectedUser }: UserManagementPanelProps) 
   const [following, setFollowing] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [lastUpdated, setLastUpdated] = useState(new Date());
+  const socket = useSocket(selectedUser);
 
   // Fetch all users
   const fetchUsers = async () => {
@@ -144,6 +147,43 @@ export function UserManagementPanel({ selectedUser }: UserManagementPanelProps) 
     fetchFollowing();
   }, [selectedUser]);
 
+  // Real-time updates
+  useEffect(() => {
+    if (!socket || !selectedUser) return;
+
+    const handleUserUpdate = async () => {
+      // Refresh user data when follows happen
+      await Promise.all([
+        fetchFollowers(),
+        fetchFollowing(),
+        fetchUsers()
+      ]);
+      setLastUpdated(new Date());
+    };
+
+    const handleNewUser = () => {
+      // Refresh users list when new users join
+      fetchUsers();
+      setLastUpdated(new Date());
+    };
+
+    // Listen for follow events
+    socket.on('follow:new', handleUserUpdate);
+    socket.on('user:new', handleNewUser);
+    
+    // Refresh user stats periodically
+    const interval = setInterval(() => {
+      fetchUsers();
+      setLastUpdated(new Date());
+    }, 60000); // Every minute
+
+    return () => {
+      socket.off('follow:new', handleUserUpdate);
+      socket.off('user:new', handleNewUser);
+      clearInterval(interval);
+    };
+  }, [socket, selectedUser]);
+
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
     user._id !== selectedUser._id
@@ -162,17 +202,34 @@ export function UserManagementPanel({ selectedUser }: UserManagementPanelProps) 
     >
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-6">
-        <div className="flex items-center gap-3">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="p-3 bg-gradient-to-tr from-blue-500 to-cyan-600 rounded-xl"
-          >
-            <Users className="w-6 h-6 text-white" />
-          </motion.div>
-          <div>
-            <h2 className="text-2xl font-bold text-slate-900">User Management</h2>
-            <p className="text-slate-600">Manage users, follows, and relationships</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="p-3 bg-gradient-to-tr from-blue-500 to-cyan-600 rounded-xl"
+            >
+              <Users className="w-6 h-6 text-white" />
+            </motion.div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900">User Management</h2>
+              <div className="flex items-center gap-3">
+                <p className="text-slate-600">Manage users, follows, and relationships</p>
+                <div className="flex items-center gap-1">
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-2 h-2 bg-blue-500 rounded-full"
+                  />
+                  <span className="text-xs text-blue-600 font-medium">Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-slate-500">
+              Updated: {lastUpdated.toLocaleTimeString()}
+            </p>
           </div>
         </div>
       </div>
