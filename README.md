@@ -1,20 +1,44 @@
-<div align="center">
+# 🔔 InsydNotification - Real-time Notification System
 
-# 🔔 Insyd Notifications POC
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 
-*A modern, scalable notification system for architecture professionals*
+A **production-ready, scalable real-time notification system** built with modern microservices architecture. This project demonstrates enterprise-level development practices, event-driven architecture, and real-time communication.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+## 🚀 Live Demo
 
-**Optimized for ~100 DAUs with a clear path to scale to 1M+ users**
+- **🌐 Frontend Application:** [https://insyd-notifications-web.onrender.com](https://insyd-notifications-web.onrender.com)
+- **🔗 API Documentation:** [View API Docs](./API_DOCS.md)
+- **📋 Project Demo Guide:** [View Demo](./DEMO.md)
+- **💻 Source Code:** [GitHub Repository](https://github.com/chiragSahani/InsydNotification)
 
-[🚀 Quick Start](#-quick-start) • [📋 System Design](./docs/system-design.md) • [🎯 How to Test](#-how-to-test) • [🛠️ Architecture](#%EF%B8%8F-architecture)
+## 📋 Table of Contents
 
-</div>
+- [Overview](#-overview)
+- [Architecture](#️-architecture)
+- [Features](#-features)
+- [Technology Stack](#️-technology-stack)
+- [Getting Started](#-getting-started)
+- [API Documentation](#-api-documentation)
+- [Deployment](#-deployment)
+- [Development](#️-development)
+
+## 🎯 Overview
+
+InsydNotification is a comprehensive notification system that handles real-time user interactions, social media features, and event-driven notifications. The system is designed to scale horizontally and handle thousands of concurrent users with reliable message delivery.
+
+### Key Highlights
+
+- ✅ **Microservices Architecture** - Independently deployable services
+- ✅ **Real-time Communication** - WebSocket-based instant notifications
+- ✅ **Event-Driven Design** - Asynchronous processing with message queues
+- ✅ **Type Safety** - Full TypeScript implementation across the stack
+- ✅ **Production Ready** - Deployed on cloud infrastructure with CI/CD
+- ✅ **Scalable Design** - Horizontal scaling capabilities
+- ✅ **Modern Tech Stack** - Latest versions of React, Node.js, and databases
 
 ---
 
@@ -242,6 +266,66 @@ pnpm dev
 *Interactive notification dashboard with real-time updates*
 
 </div>
+
+## ✨ Features
+
+### 🔔 Notification System
+- **Real-time Push Notifications** - Instant delivery via WebSocket
+- **User-specific Feeds** - Personalized notification streams
+- **Read/Unread Tracking** - Status management and marking
+- **Deduplication Logic** - Prevents duplicate notifications
+- **Delivery Guarantees** - Retry mechanisms for failed deliveries
+
+### 👥 Social Features
+- **User Management** - Registration, profiles, and authentication
+- **Follow System** - User relationships and social graph
+- **Activity Feeds** - Timeline of user interactions
+- **Post Creation** - Content publishing with notifications
+
+### 📊 Analytics & Monitoring
+- **Real-time Dashboard** - System metrics and user statistics
+- **Delivery Analytics** - Notification success rates
+- **Performance Monitoring** - API response times and throughput
+- **Error Tracking** - Comprehensive error logging and reporting
+
+### ⚡ Performance Features
+- **Horizontal Scaling** - Independent service scaling
+- **Caching Strategy** - Redis-based caching for performance
+- **Database Optimization** - Indexed queries and pagination
+- **Queue Management** - Background job processing with priorities
+
+## 🛠️ Technology Stack
+
+### **Backend Services**
+| Technology | Purpose | Version |
+|-----------|---------|---------|
+| **Node.js** | Runtime environment | 18+ |
+| **Express.js** | Web framework | ^4.18.2 |
+| **TypeScript** | Type safety | ^5.3.3 |
+| **Socket.IO** | Real-time communication | ^4.7.4 |
+| **BullMQ** | Job queue management | ^4.15.4 |
+| **Mongoose** | MongoDB ODM | ^8.0.3 |
+| **Zod** | Runtime type validation | ^3.22.4 |
+| **Winston** | Logging framework | ^3.17.0 |
+
+### **Frontend Application**
+| Technology | Purpose | Version |
+|-----------|---------|---------|
+| **React** | UI framework | ^18.2.0 |
+| **TypeScript** | Type safety | ^5.3.3 |
+| **Vite** | Build tool | ^5.0.10 |
+| **Tailwind CSS** | Styling framework | ^3.4.0 |
+| **Framer Motion** | Animation library | ^10.16.5 |
+| **Socket.IO Client** | Real-time client | ^4.7.4 |
+
+### **Infrastructure & DevOps**
+| Technology | Purpose |
+|-----------|---------|
+| **MongoDB Atlas** | Managed database |
+| **Redis Cloud** | Managed cache/queue |
+| **Render** | Cloud deployment |
+| **GitHub Actions** | CI/CD pipeline |
+| **pnpm** | Package management |
 
 ### 🚀 Test Flow
 
@@ -527,13 +611,120 @@ timeline
 
 <div align="center">
 
-### 🏗️ **Built for Insyd**
-*Connecting Architecture Professionals Worldwide*
+## 📚 API Documentation
 
-[![Built with ❤️](https://img.shields.io/badge/Built%20with-❤️-red?style=for-the-badge)](https://github.com/your-org/insyd-notifications)
-[![TypeScript](https://img.shields.io/badge/Powered%20by-TypeScript-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+### Authentication
+Currently using simple user selection for demo purposes. JWT authentication can be implemented for production.
 
-**Questions? Issues? Contributions?**  
-[📧 Email](mailto:dev@insyd.com) • [🐛 Issues](https://github.com/your-org/insyd-notifications/issues) • [💬 Discussions](https://github.com/your-org/insyd-notifications/discussions)
+### Core Endpoints
 
-</div>
+#### Users
+```http
+GET    /api/users              # List all users
+POST   /api/users              # Create user
+GET    /api/users/:id          # Get user by ID
+PUT    /api/users/:id          # Update user
+DELETE /api/users/:id          # Delete user
+```
+
+#### Notifications
+```http
+GET    /api/notifications?userId=123    # Get user notifications
+POST   /api/notifications/:id/read     # Mark as read
+```
+
+#### Posts
+```http
+GET    /api/posts              # List posts
+POST   /api/posts              # Create post
+GET    /api/posts/:id          # Get post
+DELETE /api/posts/:id          # Delete post
+```
+
+### WebSocket Events
+
+**Client → Server:**
+```javascript
+socket.emit('join', { userId: '123' })
+```
+
+**Server → Client:**
+```javascript
+socket.on('notification:new', (notification) => {
+  // Handle new notification
+})
+```
+
+For complete API documentation, see [API_DOCS.md](./API_DOCS.md).
+
+## 🌐 Deployment
+
+### Production Deployment (Render)
+
+The application is configured for deployment on Render with the following services:
+
+1. **API Service** (Web Service)
+2. **Worker Service** (Background Worker)  
+3. **Frontend** (Static Site)
+
+### Environment Variables
+
+Set these environment variables in your deployment platform:
+
+```env
+NODE_ENV=production
+MONGODB_URI=mongodb+srv://...
+REDIS_URL=redis://...
+JWT_SECRET=...
+CORS_ORIGIN=https://your-frontend.onrender.com
+```
+
+## 🛠️ Development
+
+### Available Scripts
+
+```bash
+# Development
+pnpm dev          # Start all services in dev mode
+pnpm dev:api      # Start only API service
+pnpm dev:worker   # Start only worker service  
+pnpm dev:web      # Start only frontend
+
+# Building
+pnpm build        # Build all packages
+pnpm build:api    # Build API only
+pnpm build:worker # Build worker only
+pnpm build:web    # Build frontend only
+
+# Testing
+pnpm test         # Run all tests
+pnpm lint         # Run linting
+pnpm typecheck    # Run TypeScript checking
+
+# Database
+pnpm seed         # Seed database with sample data
+```
+
+---
+
+## 👨‍💻 Author
+
+**Chirag Sahani**
+- **GitHub**: [@chiragSahani](https://github.com/chiragSahani)
+- **Email**: chiragsahani093@gmail.com
+- **LinkedIn**: [Connect with me](https://linkedin.com/in/chirag-sahani)
+
+---
+
+## 📈 Project Stats
+
+![GitHub stars](https://img.shields.io/github/stars/chiragSahani/InsydNotification)
+![GitHub forks](https://img.shields.io/github/forks/chiragSahani/InsydNotification)
+![GitHub issues](https://img.shields.io/github/issues/chiragSahani/InsydNotification)
+![GitHub license](https://img.shields.io/github/license/chiragSahani/InsydNotification)
+
+---
+
+**⭐ If you find this project helpful, please consider giving it a star!**
+
+*This project demonstrates production-ready full-stack development with modern technologies and best practices.*
