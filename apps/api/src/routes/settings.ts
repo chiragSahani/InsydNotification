@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { body, param, validationResult } from 'express-validator';
 import { Settings } from '../models/Settings.js';
 import { ResponseHelper } from '../utils/response.js';
@@ -9,7 +9,7 @@ export const settingsRouter = Router();
 // Get user settings
 settingsRouter.get('/:userId', [
   param('userId').isMongoId().withMessage('Invalid user ID')
-], async (req, res) => {
+], async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -65,7 +65,7 @@ settingsRouter.put('/:userId', [
   body('notificationTypes').optional().isObject(),
   body('deliveryMethods').optional().isObject(),
   body('frequency').optional().isObject()
-], async (req, res) => {
+], async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -93,7 +93,7 @@ settingsRouter.put('/:userId', [
 // Reset user settings to default
 settingsRouter.post('/:userId/reset', [
   param('userId').isMongoId().withMessage('Invalid user ID')
-], async (req, res) => {
+], async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -147,7 +147,7 @@ settingsRouter.patch('/:userId/notifications', [
   param('userId').isMongoId().withMessage('Invalid user ID'),
   body('enabled').isBoolean().withMessage('Enabled must be a boolean'),
   body('types').optional().isArray().withMessage('Types must be an array')
-], async (req, res) => {
+], async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
