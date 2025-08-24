@@ -23,61 +23,80 @@
 <div align="center">
 
 ```mermaid
-flowchart TD
-    %% User Interaction Layer
-    User([👤 User<br/>Browser/Mobile]) --> Web
+graph TB
+    %% === USER LAYER ===
+    subgraph "🎯 User Interface Layer"
+        USER[👤 User<br/>Browser/Mobile<br/>Real-time Experience]
+    end
     
-    %% Client Layer
-    Web[🌐 React Web App<br/>Port: 5173<br/>Real-time UI]
+    %% === CLIENT LAYER ===
+    subgraph "🌐 Frontend Layer"
+        WEB["🖥️ React Web App<br/>📍 Port: 5173<br/>⚡ Real-time UI<br/>🔄 State Management"]
+    end
     
-    %% Network Layer
-    Web -->|HTTP Requests| API
-    Web <-->|WebSocket Connection| Socket
+    %% === API LAYER ===
+    subgraph "🚀 Backend Services"
+        API["🔗 Express API<br/>📍 Port: 4000<br/>🛡️ REST Endpoints<br/>📝 CRUD Operations"]
+        SOCKET["🔌 Socket.IO Server<br/>⚡ WebSocket Events<br/>🔔 Live Notifications<br/>📡 Real-time Updates"]
+    end
     
-    %% Application Layer
-    API[🚀 Express API Server<br/>Port: 4000<br/>REST Endpoints]
-    Socket[🔌 Socket.IO<br/>Real-time Events<br/>Notifications]
+    %% === PROCESSING LAYER ===
+    subgraph "⚙️ Background Processing"
+        QUEUE["📋 Job Queue<br/>🚀 BullMQ<br/>⏰ Event Scheduling<br/>🔄 Task Management"]
+        WORKER["🔧 Background Worker<br/>⚡ Event Processing<br/>🏭 Notification Factory<br/>📊 Analytics Engine"]
+    end
     
-    %% Business Logic
-    API -->|Create Jobs| Queue
-    API <-->|Read/Write| MongoDB
+    %% === DATA LAYER ===
+    subgraph "🗄️ Data Storage"
+        MONGO[("🍃 MongoDB<br/>👥 Users & Profiles<br/>📄 Posts & Content<br/>🔔 Notifications<br/>📊 Activity Logs")]
+        REDIS[("🔴 Redis<br/>📋 Job Queues<br/>⚡ Cache Layer<br/>🔒 Session Storage")]
+    end
     
-    %% Background Processing
-    Queue[⚡ Job Queue<br/>BullMQ<br/>Event Processing]
-    Worker[🔧 Background Worker<br/>Process Events<br/>Generate Notifications]
+    %% === FUTURE SERVICES ===
+    subgraph "🔮 Future Integrations"
+        EMAIL["📧 Email Service<br/>📨 SMTP/SendGrid<br/>📬 Digest Emails"]
+        PUSH["📲 Push Notifications<br/>🔔 Mobile Push<br/>🌐 Web Push"]
+        ANALYTICS["📊 Analytics<br/>📈 User Insights<br/>📉 Performance Metrics"]
+    end
     
-    Queue --> Worker
-    Worker -->|Store Results| MongoDB
-    Worker -->|Emit Events| Socket
+    %% === MAIN FLOW ===
+    USER --> WEB
+    WEB <-->|🔄 HTTP/HTTPS| API
+    WEB <-->|⚡ WebSocket| SOCKET
     
-    %% Data Storage
-    MongoDB[(🍃 MongoDB<br/>Users, Posts<br/>Notifications)]
-    RedisDB[(🔴 Redis<br/>Job Queues<br/>Cache)]
+    %% === API OPERATIONS ===
+    API -->|📝 Create Jobs| QUEUE
+    API <-->|💾 Read/Write| MONGO
+    API <-->|⚡ Cache| REDIS
     
-    Queue <--> RedisDB
-    API <--> RedisDB
+    %% === BACKGROUND PROCESSING ===
+    QUEUE <-->|📋 Queue Management| REDIS
+    QUEUE -->|🔄 Process Jobs| WORKER
+    WORKER -->|💾 Store Results| MONGO
+    WORKER -->|🔔 Emit Events| SOCKET
     
-    %% Future Integrations (Dotted)
-    Worker -.->|Future| Email[📧 Email<br/>Service]
-    Worker -.->|Future| Push[📲 Push<br/>Notifications]
-    API -.->|Future| Analytics[📊 Analytics<br/>Service]
+    %% === REAL-TIME UPDATES ===
+    SOCKET -->|⚡ Live Updates| WEB
     
-    %% Real-time Flow
-    Socket -->|Live Updates| Web
-    Web -->|User Actions| API
+    %% === FUTURE CONNECTIONS ===
+    WORKER -.->|📧 Send Emails| EMAIL
+    WORKER -.->|📲 Push Alerts| PUSH
+    API -.->|📊 Track Events| ANALYTICS
     
-    %% Styling
-    classDef clientLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef apiLayer fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
-    classDef workerLayer fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    classDef dataLayer fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef futureService fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,stroke-dasharray: 5 5
+    %% === STYLING ===
+    classDef userLayer fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#0d47a1
+    classDef clientLayer fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#1b5e20
+    classDef apiLayer fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100
+    classDef processLayer fill:#fce4ec,stroke:#c2185b,stroke-width:3px,color:#880e4f
+    classDef dataLayer fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#4a148c
+    classDef futureLayer fill:#fafafa,stroke:#616161,stroke-width:2px,stroke-dasharray:5 5,color:#424242
     
-    class User,Web clientLayer
-    class API,Socket apiLayer
-    class Queue,Worker workerLayer
-    class MongoDB,RedisDB dataLayer
-    class Email,Push,Analytics futureService
+    class USER userLayer
+    class WEB clientLayer
+    class API,SOCKET apiLayer
+    class QUEUE,WORKER processLayer
+    class MONGO,REDIS dataLayer
+    class EMAIL,PUSH,ANALYTICS futureLayer
 ```
 
 </div>
