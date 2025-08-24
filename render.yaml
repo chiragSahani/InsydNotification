@@ -4,7 +4,7 @@ services:
     name: insyd-notifications-api
     env: node
     plan: starter
-    buildCommand: pnpm install && pnpm --filter api build
+    buildCommand: pnpm install && pnpm --filter types build && pnpm --filter api build
     startCommand: pnpm --filter api start
     envVars:
       - key: NODE_ENV
@@ -33,7 +33,7 @@ services:
     name: insyd-notifications-worker
     env: node
     plan: starter
-    buildCommand: pnpm install && pnpm --filter worker build
+    buildCommand: pnpm install && pnpm --filter types build && pnpm --filter worker build
     startCommand: pnpm --filter worker start
     envVars:
       - key: NODE_ENV
