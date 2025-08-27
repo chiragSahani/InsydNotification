@@ -97,9 +97,5 @@ All API responses follow this structure:
 }
 ```
 
-## ⚡ Real-time Demo
+#
 
-1. Open frontend: https://insyd-notifications-web.onrender.com
-2. Select a user from the dropdown
-3. Create posts or follow users
-4. Watch real-time notifications appear instantly!
